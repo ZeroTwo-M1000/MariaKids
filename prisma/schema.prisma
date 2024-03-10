@@ -36,7 +36,8 @@ model ParentConsultations {
 }
 
 model ChildrenArtworks {
-    id   String @id @default(uuid())
+    id   String   @id @default(uuid())
+    date DateTime @default(now())
     link String
 
     @@map("children_artworks")

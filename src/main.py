@@ -1,3 +1,4 @@
+from api.ChildrenArtworks.crud import router as children_artworks_router
 from api.LessonNotes.crud import router as lesson_notes_router
 from api.ParentConsultations.crud import router as parent_consultations_router
 from api.ProjectActivities.crud import router as project_activities_router
@@ -30,6 +31,7 @@ def init_app():
     app.include_router(lesson_notes_router, tags=["Lesson Notes"], prefix="/api/lesson-notes")
     app.include_router(parent_consultations_router, tags=["Parent Consultations"], prefix="/api/parent-consultations")
     app.include_router(project_activities_router, tags=["Project Activities"], prefix="/api/project-activities")
+    app.include_router(children_artworks_router, tags=["Children Artworks"], prefix="/api/children-artworks")
     app.include_router(web_routes.router, tags=["Web"])
 
     app.add_event_handler("startup", on_startup)
