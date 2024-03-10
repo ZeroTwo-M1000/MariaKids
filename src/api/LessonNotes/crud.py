@@ -15,7 +15,10 @@ router = APIRouter()
 
 @router.get("/")
 async def read_lesson_notes():
-    return [GetLessonNotes(**lesson_note.dict()) for lesson_note in await LessonNotesDataLoader.get_lesson_notes()]
+    return [
+        GetLessonNotes(**lesson_note.dict())
+        for lesson_note in await LessonNotesDataLoader.get_lesson_notes()
+    ]
 
 
 @router.post("/")

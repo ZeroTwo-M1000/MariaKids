@@ -4,7 +4,10 @@ import uuid
 from pathlib import Path
 
 from api.ParentConsultations.data_loader import ParentConsultationsDataLoader
-from api.ParentConsultations.models import GetParentConsultations, PostParentConsultations
+from api.ParentConsultations.models import (
+    GetParentConsultations,
+    PostParentConsultations,
+)
 from fastapi import APIRouter
 from fastapi import File, UploadFile
 from fastapi import HTTPException
@@ -14,8 +17,10 @@ router = APIRouter()
 
 @router.get("/")
 async def read_parent_consultations():
-    return [GetParentConsultations(**lesson_note.dict()) for lesson_note in
-            await ParentConsultationsDataLoader.get_parent_consultations()]
+    return [
+        GetParentConsultations(**lesson_note.dict())
+        for lesson_note in await ParentConsultationsDataLoader.get_parent_consultations()
+    ]
 
 
 @router.post("/")

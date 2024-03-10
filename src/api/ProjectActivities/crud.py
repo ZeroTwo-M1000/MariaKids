@@ -14,8 +14,10 @@ router = APIRouter()
 
 @router.get("/")
 async def read_project_activities():
-    return [GetProjectActivities(**lesson_note.dict()) for lesson_note in
-            await ProjectActivitiesDataLoader.get_project_activities()]
+    return [
+        GetProjectActivities(**lesson_note.dict())
+        for lesson_note in await ProjectActivitiesDataLoader.get_project_activities()
+    ]
 
 
 @router.post("/")

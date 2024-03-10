@@ -11,9 +11,7 @@ class ChildrenArtworksDataLoader:
     @staticmethod
     async def get_children_artworks_by_id(id: str):
         return await prisma_connection.prisma.childrenartworks.find_unique(
-            where={
-                "id": id
-            },
+            where={"id": id},
         )
 
     @staticmethod
@@ -25,7 +23,5 @@ class ChildrenArtworksDataLoader:
     @staticmethod
     async def delete_children_artworks(id: str):
         return await prisma_connection.prisma.childrenartworks.delete(
-            where={
-                "id": id
-            },
+            where={"id": id},
         )

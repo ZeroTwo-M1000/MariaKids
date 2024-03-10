@@ -14,8 +14,10 @@ router = APIRouter()
 
 @router.get("/")
 async def read_children_artworks():
-    return [GetChildrenArtworks(**lesson_note.dict()) for lesson_note in
-            await ChildrenArtworksDataLoader.get_children_artworks()]
+    return [
+        GetChildrenArtworks(**lesson_note.dict())
+        for lesson_note in await ChildrenArtworksDataLoader.get_children_artworks()
+    ]
 
 
 @router.post("/")

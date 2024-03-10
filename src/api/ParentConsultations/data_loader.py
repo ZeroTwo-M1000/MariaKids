@@ -11,9 +11,7 @@ class ParentConsultationsDataLoader:
     @staticmethod
     async def get_parent_consultations_by_id(id: str):
         return await prisma_connection.prisma.parentconsultations.find_unique(
-            where={
-                "id": id
-            },
+            where={"id": id},
         )
 
     @staticmethod
@@ -25,7 +23,5 @@ class ParentConsultationsDataLoader:
     @staticmethod
     async def delete_parent_consultations(id: str):
         return await prisma_connection.prisma.parentconsultations.delete(
-            where={
-                "id": id
-            },
+            where={"id": id},
         )

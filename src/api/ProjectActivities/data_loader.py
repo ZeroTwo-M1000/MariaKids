@@ -11,9 +11,7 @@ class ProjectActivitiesDataLoader:
     @staticmethod
     async def get_project_activities_by_id(id: str):
         return await prisma_connection.prisma.projectactivities.find_unique(
-            where={
-                "id": id
-            },
+            where={"id": id},
         )
 
     @staticmethod
@@ -25,7 +23,5 @@ class ProjectActivitiesDataLoader:
     @staticmethod
     async def delete_project_activities(id: str):
         return await prisma_connection.prisma.projectactivities.delete(
-            where={
-                "id": id
-            },
+            where={"id": id},
         )
