@@ -1,8 +1,43 @@
 generator client {
-    provider = "prisma-client-py"
+    provider             = "prisma-client-py"
+    recursive_type_depth = 5
 }
 
 datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
+}
+
+model LessonNotes {
+    id    String   @id @default(uuid())
+    title String
+    date  DateTime @default(now())
+    link  String
+
+    @@map("lesson_notes")
+}
+
+model ProjectActivities {
+    id    String   @id @default(uuid())
+    title String
+    date  DateTime @default(now())
+    link  String
+
+    @@map("project_activities")
+}
+
+model ParentConsultations {
+    id    String   @id @default(uuid())
+    title String
+    date  DateTime @default(now())
+    link  String
+
+    @@map("parent_consultations")
+}
+
+model ChildrenArtworks {
+    id   String @id @default(uuid())
+    link String
+
+    @@map("children_artworks")
 }

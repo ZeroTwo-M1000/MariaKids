@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 
-from src.config.connection import prisma_connection
+from config.connection import prisma_connection
+from server import web_routes
 
 
 def init_app():
-    app = FastAPI(title="Inventix API")
+    app = FastAPI(title="MariaSite")
+
+    app.mount("/assets", StaticFiles(directory="build/assets"), name="static")
 
     app.add_middleware(
         CORSMiddleware,
@@ -21,7 +25,12 @@ def init_app():
     async def on_shutdown():
         await prisma_connection.disconnect()
 
+    app.include_router(web_routes.router, tags=["Web"])
+
     app.add_event_handler("startup", on_startup)
     app.add_event_handler("shutdown", on_shutdown)
 
     return app
+
+
+app = init_app()
