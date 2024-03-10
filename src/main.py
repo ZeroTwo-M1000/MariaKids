@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
+from api.LessonNotes.crud import router as lesson_notes_router
 from config.connection import prisma_connection
 from server import web_routes
 
@@ -25,6 +26,7 @@ def init_app():
     async def on_shutdown():
         await prisma_connection.disconnect()
 
+    app.include_router(lesson_notes_router, tags=["Lesson Notes"], prefix="/api/lesson-notes")
     app.include_router(web_routes.router, tags=["Web"])
 
     app.add_event_handler("startup", on_startup)

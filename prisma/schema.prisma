@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    url      = env("DATABASE_URL")
+    url      = "postgresql://M1000:264532@localhost:5432/MariaKidsDB"
 }
 
 model LessonNotes {
