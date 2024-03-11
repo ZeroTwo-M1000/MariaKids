@@ -1,9 +1,16 @@
 <template>
-    <div>
-        <h1 class="text-3xl font-bold underline">Hello</h1>
+    <AppNavigation />
+    <div class="app">
+        <router-view />
     </div>
 </template>
 
-<script setup></script>
+<script setup>
+import AppNavigation from "@/components/Navigation/AppNavigation.vue"
+</script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.app {
+    @apply overflow-x-hidden;
+}
+</style>
