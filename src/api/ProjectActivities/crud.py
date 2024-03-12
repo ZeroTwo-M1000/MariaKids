@@ -24,7 +24,9 @@ async def read_project_activities():
 
 
 @router.post("/")
-async def create_project_activities(title: str, file: UploadFile = File(...), token: str = Depends(get_token)):
+async def create_project_activities(
+    title: str, file: UploadFile = File(...), token: str = Depends(get_token)
+):
     name = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
     file_location = f"media/{name}"
 

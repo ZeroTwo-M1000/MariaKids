@@ -17,7 +17,9 @@ def decode_token(token: str) -> dict:
     return jwt.decode(token, key="hfgkkfjgjhfg4356grthnyge5", algorithms=["HS256"])
 
 
-async def get_token(auth: Optional[HTTPAuthorizationCredentials] = Depends(get_bearer_token)):
+async def get_token(
+    auth: Optional[HTTPAuthorizationCredentials] = Depends(get_bearer_token),
+):
     if auth is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -46,4 +48,6 @@ def encode_token(name: str):
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Unauthorized",
         )
-    return jwt.encode({"name": name}, key="hfgkkfjgjhfg4356grthnyge5", algorithm="HS256")
+    return jwt.encode(
+        {"name": name}, key="hfgkkfjgjhfg4356grthnyge5", algorithm="HS256"
+    )

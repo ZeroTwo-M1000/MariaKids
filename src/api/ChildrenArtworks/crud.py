@@ -24,7 +24,9 @@ async def read_children_artworks():
 
 
 @router.post("/")
-async def create_children_artworks(file: UploadFile = File(...), token: str = Depends(get_token)):
+async def create_children_artworks(
+    file: UploadFile = File(...), token: str = Depends(get_token)
+):
     name = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
     file_location = f"media/{name}"
 

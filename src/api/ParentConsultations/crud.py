@@ -27,7 +27,9 @@ async def read_parent_consultations():
 
 
 @router.post("/")
-async def create_parent_consultations(title: str, file: UploadFile = File(...), token: str = Depends(get_token)):
+async def create_parent_consultations(
+    title: str, file: UploadFile = File(...), token: str = Depends(get_token)
+):
     name = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
     file_location = f"media/{name}"
 
