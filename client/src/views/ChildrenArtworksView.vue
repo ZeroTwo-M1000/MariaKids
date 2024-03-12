@@ -1,7 +1,7 @@
 <template>
     <div class="children">
         <h1>Работы детей</h1>
-        <div v-if="true" class="create">
+        <div v-if="$admin" class="create">
             <input type="file" @change="fd.append('file', $event.target.files[0])" />
 
             <button @click="store.create_children_art_work(fd)">Добавить</button>

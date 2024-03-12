@@ -25,7 +25,7 @@ const toggleImg = () => {
         <div class="children-img">
             <img ref="img" :src="BASE_URL + data.link" alt="img" @click="toggleImg" />
             <button class="dow" @click="download(data)">Скачать</button>
-            <button class="del" @click="$emit('delete', data.id)">Удалить</button>
+            <button v-if="$admin" class="del" @click="$emit('delete', data.id)">Удалить</button>
         </div>
     </div>
 </template>
