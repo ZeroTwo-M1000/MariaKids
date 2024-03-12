@@ -20,7 +20,7 @@ defineProps({
                 <p>Скачать</p>
                 <i class="bx bx-cloud-download" style="color: #ffffff"></i>
             </a>
-            <i class="bx bx-trash" @click="$emit('delete', data.id)"></i>
+            <i v-if="$admin" class="bx bx-trash" @click="$emit('delete', data.id)"></i>
         </div>
     </div>
 </template>
