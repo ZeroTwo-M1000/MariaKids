@@ -24,6 +24,7 @@ function loginFunc() {
         .then((response) => {
             localStorage.setItem("token", response.data)
             router.push({ name: "home" })
+            window.location.reload()
         })
         .catch(() => {
             login.value = ""
