@@ -42,18 +42,18 @@
             animation: take-left 1s ease forwards;
 
             h1 {
-                @apply text-4xl lg:text-5xl text-center;
+                @apply text-4xl lg:text-5xl text-white text-center;
             }
 
             .home-about-text-snap {
                 @apply flex items-center space-x-4 mt-2;
 
                 p {
-                    @apply text-lg lg:text-xl text-center min-w-80;
+                    @apply text-lg text-white lg:text-xl text-center min-w-80;
                 }
 
                 span {
-                    @apply w-0 lg:w-10 h-1 lg:h-1 rounded-full bg-white/70;
+                    @apply w-0 lg:w-10 h-1 rounded-full bg-white;
                 }
             }
         }

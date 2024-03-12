@@ -8,6 +8,4 @@ body {
     font-family: "Geologica", sans-serif;
     @apply text-white bg-gray-800;
     overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
