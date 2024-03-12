@@ -9,8 +9,4 @@
 import AppNavigation from "@/components/Navigation/AppNavigation.vue"
 </script>
 
-<style lang="scss">
-.app {
-    @apply overflow-x-hidden;
-}
-</style>
+<style lang="scss"></style>

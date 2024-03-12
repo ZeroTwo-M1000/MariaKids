@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get("/media/{file_name:path}")
 async def media(file_name: str):
     if file_name != "" and os.path.exists(f"media/{file_name}"):
-        return FileResponse(f"media/{file_name}")
+        return FileResponse(f"media/{file_name}", media_type="application/octet-stream", filename=file_name)
     raise HTTPException(status_code=404)
 
 

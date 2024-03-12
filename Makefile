@@ -31,6 +31,18 @@ generate:
 	@echo "Generating Prisma client..."
 	$(PRISMA) generate
 
+dev:
+	@echo "Starting the dev..."
+	(cd $(CLIENT_DIR) && $(YARN) dev)
+
+dev-h:
+	@echo "Starting the dev with host..."
+	(cd $(CLIENT_DIR) && $(YARN) dev --host)
+
+prisma-db:
+	@echo "Running Prisma studio..."
+	$(PRISMA) studio
+
 run:
 	@echo "Starting the development server..."
 	(cd $(SRC_DIR) && $(UVICORN) $(APP_PATH) --reload --host $(HOST) --port $(PORT))
