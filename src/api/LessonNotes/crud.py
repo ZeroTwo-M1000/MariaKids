@@ -4,11 +4,13 @@ import uuid
 from pathlib import Path
 
 from fastapi import APIRouter
+from fastapi import Depends
 from fastapi import File, UploadFile
 from fastapi import HTTPException
 
 from api.LessonNotes.data_loader import LessonNotesDataLoader
 from api.LessonNotes.models import GetLessonNotes, PostLessonNotes
+from auth.auth import get_token
 
 router = APIRouter()
 
@@ -22,7 +24,7 @@ async def read_lesson_notes():
 
 
 @router.post("/")
-async def create_lesson_notes(title: str, file: UploadFile = File(...)):
+async def create_lesson_notes(title: str, file: UploadFile = File(...), token: str = Depends(get_token)):
     name = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
     file_location = f"media/{name}"
 
@@ -40,7 +42,7 @@ async def create_lesson_notes(title: str, file: UploadFile = File(...)):
 
 
 @router.delete("/{id}")
-async def delete_lesson_notes(id: str):
+async def delete_lesson_notes(id: str, token: str = Depends(get_token)):
     note = await LessonNotesDataLoader.delete_lesson_notes(id)
 
     if note is None:

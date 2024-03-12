@@ -14,8 +14,23 @@ export const BASE_URL = "http://localhost:8000"
 
 axios.defaults.baseURL = `${BASE_URL}/api`
 
+const token = localStorage.getItem("token")
+if (token) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`
+}
+
+async function getadmin() {
+    try {
+        const response = await axios.get("/auth/isadmin")
+        app.config.globalProperties.$admin = response.data.admin
+    } catch (e) {
+        app.config.globalProperties.$admin = false
+    }
+}
+
+getadmin().then(() => {})
+
 app.use(createPinia())
 app.use(autoAnimatePlugin)
 app.use(router)
-
 app.mount("#app")

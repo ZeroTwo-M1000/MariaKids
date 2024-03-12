@@ -6,7 +6,9 @@ class ParentConsultationsDataLoader:
 
     @staticmethod
     async def get_parent_consultations():
-        return await prisma_connection.prisma.parentconsultations.find_many()
+        return await prisma_connection.prisma.parentconsultations.find_many(
+            order={"date": "desc"},
+        )
 
     @staticmethod
     async def get_parent_consultations_by_id(id: str):

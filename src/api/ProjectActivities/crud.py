@@ -3,11 +3,14 @@ import shutil
 import uuid
 from pathlib import Path
 
-from api.ProjectActivities.data_loader import ProjectActivitiesDataLoader
-from api.ProjectActivities.models import GetProjectActivities, PostProjectActivities
 from fastapi import APIRouter
+from fastapi import Depends
 from fastapi import File, UploadFile
 from fastapi import HTTPException
+
+from api.ProjectActivities.data_loader import ProjectActivitiesDataLoader
+from api.ProjectActivities.models import GetProjectActivities, PostProjectActivities
+from auth.auth import get_token
 
 router = APIRouter()
 
@@ -21,7 +24,7 @@ async def read_project_activities():
 
 
 @router.post("/")
-async def create_project_activities(title: str, file: UploadFile = File(...)):
+async def create_project_activities(title: str, file: UploadFile = File(...), token: str = Depends(get_token)):
     name = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
     file_location = f"media/{name}"
 
@@ -39,7 +42,7 @@ async def create_project_activities(title: str, file: UploadFile = File(...)):
 
 
 @router.delete("/{id}")
-async def delete_project_activities(id: str):
+async def delete_project_activities(id: str, token: str = Depends(get_token)):
     note = await ProjectActivitiesDataLoader.delete_project_activities(id)
 
     if note is None:

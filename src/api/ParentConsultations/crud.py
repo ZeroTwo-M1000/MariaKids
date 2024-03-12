@@ -3,14 +3,17 @@ import shutil
 import uuid
 from pathlib import Path
 
+from fastapi import APIRouter
+from fastapi import Depends
+from fastapi import File, UploadFile
+from fastapi import HTTPException
+
 from api.ParentConsultations.data_loader import ParentConsultationsDataLoader
 from api.ParentConsultations.models import (
     GetParentConsultations,
     PostParentConsultations,
 )
-from fastapi import APIRouter
-from fastapi import File, UploadFile
-from fastapi import HTTPException
+from auth.auth import get_token
 
 router = APIRouter()
 
@@ -24,7 +27,7 @@ async def read_parent_consultations():
 
 
 @router.post("/")
-async def create_parent_consultations(title: str, file: UploadFile = File(...)):
+async def create_parent_consultations(title: str, file: UploadFile = File(...), token: str = Depends(get_token)):
     name = f"{uuid.uuid4()}.{file.filename.split('.')[-1]}"
     file_location = f"media/{name}"
 
@@ -42,7 +45,7 @@ async def create_parent_consultations(title: str, file: UploadFile = File(...)):
 
 
 @router.delete("/{id}")
-async def delete_parent_consultations(id: str):
+async def delete_parent_consultations(id: str, token: str = Depends(get_token)):
     note = await ParentConsultationsDataLoader.delete_parent_consultations(id)
 
     if note is None:

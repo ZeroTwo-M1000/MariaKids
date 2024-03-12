@@ -1,11 +1,13 @@
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+
 from api.ChildrenArtworks.crud import router as children_artworks_router
 from api.LessonNotes.crud import router as lesson_notes_router
 from api.ParentConsultations.crud import router as parent_consultations_router
 from api.ProjectActivities.crud import router as project_activities_router
+from auth.crud import router as auth_router
 from config.connection import prisma_connection
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
 from server import web_routes
 
 
@@ -46,6 +48,7 @@ def init_app():
         tags=["Children Artworks"],
         prefix="/api/children-artworks",
     )
+    app.include_router(auth_router, tags=["Auth"], prefix="/api/auth")
     app.include_router(web_routes.router, tags=["Web"])
 
     app.add_event_handler("startup", on_startup)

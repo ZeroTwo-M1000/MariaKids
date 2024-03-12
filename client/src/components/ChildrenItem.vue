@@ -24,7 +24,8 @@ const toggleImg = () => {
     <div class="children">
         <div class="children-img">
             <img ref="img" :src="BASE_URL + data.link" alt="img" @click="toggleImg" />
-            <button @click="download(data)">Скачать</button>
+            <button class="dow" @click="download(data)">Скачать</button>
+            <button class="del" @click="$emit('delete', data.id)">Удалить</button>
         </div>
     </div>
 </template>
@@ -40,8 +41,12 @@ const toggleImg = () => {
             @apply w-full max-h-[400px] h-full object-cover rounded-xl cursor-pointer;
         }
 
-        button {
+        .dow {
             @apply absolute bottom-0 left-0 right-0 w-full hover:scale-110 transition-all duration-300 p-3 bg-gray-800/40 backdrop-blur-lg text-white text-center font-bold rounded-b-xl;
+        }
+
+        .del {
+            @apply absolute top-0 left-0 right-0 w-full hover:scale-110 transition-all duration-300 p-3 bg-red-500/40 backdrop-blur-lg text-white text-center font-bold rounded-t-xl;
         }
     }
 }

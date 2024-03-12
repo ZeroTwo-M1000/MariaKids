@@ -6,7 +6,9 @@ class ProjectActivitiesDataLoader:
 
     @staticmethod
     async def get_project_activities():
-        return await prisma_connection.prisma.projectactivities.find_many()
+        return await prisma_connection.prisma.projectactivities.find_many(
+            order={"date": "desc"},
+        )
 
     @staticmethod
     async def get_project_activities_by_id(id: str):

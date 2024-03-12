@@ -22,7 +22,7 @@
 <style lang="scss" scoped>
 .about {
     @apply w-full lg:h-screen flex flex-col lg:flex-row-reverse lg:space-x-3;
-    @apply mt-12 lg:mt-5;
+    @apply pt-12 lg:pt-5;
 
     &-img {
         @apply w-full h-full basis-1/2 flex items-center justify-center;

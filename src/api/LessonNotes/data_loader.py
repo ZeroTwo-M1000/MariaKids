@@ -6,7 +6,9 @@ class LessonNotesDataLoader:
 
     @staticmethod
     async def get_lesson_notes():
-        return await prisma_connection.prisma.lessonnotes.find_many()
+        return await prisma_connection.prisma.lessonnotes.find_many(
+            order={"date": "desc"},
+        )
 
     @staticmethod
     async def get_lesson_notes_by_id(id: str):

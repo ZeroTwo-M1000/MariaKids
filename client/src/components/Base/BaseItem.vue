@@ -15,10 +15,13 @@ defineProps({
             <h1>{{ data.title }}</h1>
             <p>{{ data.date.substring(0, 10).split("-").reverse().join(".") }}</p>
         </div>
-        <a :href="BASE_URL + data.link" download>
-            <p>Скачать</p>
-            <i class="bx bx-cloud-download" style="color: #ffffff"></i>
-        </a>
+        <div class="btn">
+            <a :href="BASE_URL + data.link" download>
+                <p>Скачать</p>
+                <i class="bx bx-cloud-download" style="color: #ffffff"></i>
+            </a>
+            <i class="bx bx-trash" @click="$emit('delete', data.id)"></i>
+        </div>
     </div>
 </template>
 
@@ -36,15 +39,22 @@ defineProps({
         }
     }
 
-    a {
-        @apply text-lg lg:text-xl flex items-center justify-center text-center lg:space-x-3 bg-gray-600 py-2 px-3 lg:py-2 lg:px-5 rounded-xl;
+    .btn {
+        @apply flex items-center justify-center space-x-3;
+        a {
+            @apply text-lg lg:text-xl flex items-center justify-center text-center lg:space-x-3 bg-gray-600 py-2 px-3 lg:py-2 lg:px-5 rounded-xl;
 
-        p {
-            @apply hidden lg:block;
+            p {
+                @apply hidden lg:block;
+            }
+
+            i {
+                @apply text-2xl lg:text-3xl;
+            }
         }
 
         i {
-            @apply text-2xl lg:text-3xl;
+            @apply text-2xl lg:text-3xl text-red-500/80 cursor-pointer hover:text-red-500 transition-all duration-200;
         }
     }
 }

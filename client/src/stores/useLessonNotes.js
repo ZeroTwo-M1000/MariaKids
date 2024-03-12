@@ -11,7 +11,27 @@ export const useLessonNotes = defineStore("lesson_notes", () => {
         return lesson_notes
     })
 
+    const create_lesson_note = (fd) => {
+        axios
+            .post("/lesson-notes/", fd, {
+                params: {
+                    title: fd.get("title")
+                }
+            })
+            .then(() => {
+                window.location.reload()
+            })
+    }
+
+    const delete_lesson_note = (id) => {
+        axios.delete(`/lesson-notes/${id}`).then(() => {
+            window.location.reload()
+        })
+    }
+
     return {
-        lesson_notes
+        lesson_notes,
+        create_lesson_note,
+        delete_lesson_note
     }
 })

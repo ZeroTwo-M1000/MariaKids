@@ -6,7 +6,9 @@ class ChildrenArtworksDataLoader:
 
     @staticmethod
     async def get_children_artworks():
-        return await prisma_connection.prisma.childrenartworks.find_many()
+        return await prisma_connection.prisma.childrenartworks.find_many(
+            order={"date": "desc"},
+        )
 
     @staticmethod
     async def get_children_artworks_by_id(id: str):
